@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="col-md-5 mx-auto">
+    <h4 class="mb-3">Поиск</h4>
+    <form class="needs-validation" novalidate="" action="/search" method="post">
+        <div class="col-12">
+            <label for="search" class="form-label">Поиск изображений</label>
+            <input name="search" required="" id="search" type="text">
+        </div>
+        <button class="w-100 btn btn-success btn-lg" type="submit">Поиск</button>
+    </form>
+
+    <div th:each="element : ${search}" class="alert alert-info mt-2">
+        <div> Ник <h5 th:text="${element.userName}"></h5></div>
+        <div> Имя <h5 th:text="${element.name}"></h5></div>
+        <div> Фамилия <h5 th:text="${element.lastName}"></h5></div>
+        <div> Биография <h5 th:text="${element.bio}"></h5></div>
+        <div> Местоположение <h5 th:text="${element.location}"></h5></div>
+        <img th:src="${element.image.urlFull}" Width="1280" Height="720">
+    </div>
+</div>
+</body>
+</html>
